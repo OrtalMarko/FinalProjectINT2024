@@ -13,7 +13,15 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"locked_out_user","passwordIncorrect");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Username and password do not match any user in this service")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
 
     @Test
@@ -21,7 +29,15 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"incorrectUsername","secret_sauce");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Username and password do not match any user in this service")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
 
     @Test
@@ -29,7 +45,15 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"incorrectUsername","secret_sauce");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Username and password do not match any user in this service")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
 
     @Test
@@ -37,7 +61,15 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"","secret_sauce");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Username is required")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
 
     @Test
@@ -45,7 +77,15 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"locked_out_user","");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Password is required.")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
 
     @Test
@@ -53,32 +93,21 @@ public class ValidateLockedUserErrorTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         fillUserInfo(driver,"","");
-        invalidLogin(driver);
+        driver.findElement(By.id("login-button")).click();
+        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
+        String errorMessage = text.getText();
+        if (errorMessage.equals("Epic sadface: Username is required")){
+            System.out.println("Error message is valid: " + errorMessage);
+        } else {
+            System.out.println("Error message is invalid: " + errorMessage);
+        }
+        driver.quit();
     }
-
     public static void fillUserInfo(WebDriver driver,String userName,String password){
         driver.findElement(By.id("user-name")).sendKeys(userName);
         driver.findElement(By.id("password")).sendKeys(password);
     }
 
-    public  static  void  invalidLogin(WebDriver driver){
-        driver.findElement(By.id("login-button")).click();
-
-        WebElement text = driver.findElement(By.cssSelector("#login_button_container > div > form > div.error-message-container.error > h3"));
-        String errorMessage = text.getText();
-        if (errorMessage.equals("Epic sadface: user has been locked out.")){
-            System.out.println("Error: " + errorMessage);
-        } else {
-            System.out.println("You might get this message: Epic sadface: Username and password do not match.");
-        }
-        driver.findElement(By.id("user-name")).clear();
-        driver.findElement(By.id("password")).clear();
-        try {
-            Thread.sleep(1000); // 1000 milliseconds = 1 second
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 }
 
 

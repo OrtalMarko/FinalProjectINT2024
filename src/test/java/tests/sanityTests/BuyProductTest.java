@@ -92,11 +92,11 @@ public class BuyProductTest {
                 assert (currentURL).equals("https://www.saucedemo.com/checkout-complete.html");
                 assert(title).equals("Checkout: Complete!");
 
-                WebElement compleateHeader= driver.findElement(By.cssSelector(".complete-header"));
-                WebElement compleateText= driver.findElement(By.cssSelector(".complete-text"));
+                WebElement completeHeader= driver.findElement(By.cssSelector(".complete-header"));
+                WebElement completeText= driver.findElement(By.cssSelector(".complete-text"));
 
-                assert(compleateHeader.getText()).equals("Thank you for your order!");
-                assert(compleateText.getText()).equals("Your order has been dispatched, and will arrive just as fast as the pony can get there!!");
+                assert(completeHeader.getText()).equals("Thank you for your order!");
+                assert(completeText.getText()).equals("Your order has been dispatched, and will arrive just as fast as the pony can get there!!");
 
                 driver.quit();
 
